@@ -14,6 +14,7 @@ public class IshanIsCool extends LinearOpMode {
 
         while (opModeIsActive()) {
             drivetrain.move(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+            //no changes were maded here
         }
     }
 }
