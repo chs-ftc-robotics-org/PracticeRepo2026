@@ -1,10 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+@Config
 public class Drivetrain {
+    public static double SPEED_MULTIPLIER = 1.0;
+
     private DcMotor frontLeft;
     private DcMotor frontRight;
     private DcMotor backLeft;
@@ -28,12 +32,12 @@ public class Drivetrain {
     }
 
     public void move(double forward, double sideways, double turn) {
-        double adjustment = 0.4;
+        double adjustment = SPEED_MULTIPLIER;
 
-        double fl = forward - adjustment * sideways - turn;
-        double fr = forward + adjustment * sideways + turn;
-        double bl = forward + adjustment * sideways - turn;
-        double br = forward - adjustment * sideways + turn;
+        double fl = adjustment * (forward - sideways - turn);
+        double fr = adjustment * (forward + sideways + turn);
+        double bl = adjustment * (forward + sideways - turn);
+        double br = adjustment * (forward - sideways + turn);
 
         frontLeft.setPower(fl);
         frontRight.setPower(fr);
